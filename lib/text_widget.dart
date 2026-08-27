@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         backgroundColor: Colors.green,
         body: Center(
+          
           child: Text(
             "Hello NITIN",
             style: TextStyle(
