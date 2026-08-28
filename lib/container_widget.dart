@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
         width: 200,
         height: 100,
         color: Colors.blue,
+        alignment: Alignment.center,
         child: Text("Hello Flutter"),
       ),
     );
