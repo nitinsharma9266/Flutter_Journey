@@ -14,12 +14,31 @@ class MyApp extends StatelessWidget{
        appBar: AppBar(
          title: Text("Button Widget"),
        ),
-       body: TextButton(
-         child: Text("click here!"),
-         onPressed: (){
-           print("Text BUtton Terminated");
-         },
-       ),
+       // body: TextButton(
+       //   child: Text("click here!"),
+       //   onPressed: (){
+       //     print("Text Button Terminated");
+       //   },
+       // ),
+
+       // body: ElevatedButton(
+       //      child: Text("click here!"),
+       //      onPressed: (){
+       //        print("Elevated Button Terminated");
+       //      },
+       //      onLongPress: (){
+       //        print("Long Pressed!");
+       //      },
+       //     ),
+
+       body: OutlinedButton(
+           child: Text("click here!"),
+           onPressed: (){
+             print("outlined Button Terminated");
+           },
+         ),
+
+
 
      ),
    );
