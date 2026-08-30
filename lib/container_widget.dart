@@ -10,13 +10,23 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Container(
-        width: 200,
-        height: 100,
-        color: Colors.blue,
-        alignment: Alignment.center,
-        child: Text("Hello Flutter"),
+
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("Flutter Container"),
+        ),
+        body: Center(
+          child: Container(
+            width: 200,
+            height: 100,
+            color: Colors.blue,
+            alignment: Alignment.center,
+            child: Text("Hello Flutter Journey"),
+          ),
+        ),
       ),
     );
   }
+
+
 }
