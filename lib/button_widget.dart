@@ -1,6 +1,5 @@
-
+import 'dart:io';
 import 'package:flutter/material.dart';
-
 void main(){
   runApp(const MyApp());
 }
@@ -34,12 +33,9 @@ class MyApp extends StatelessWidget{
        body: OutlinedButton(
            child: Text("click here!"),
            onPressed: (){
-             print("outlined Button Terminated");
+             stdout.write("outlined Button Terminated");
            },
          ),
-
-
-
      ),
    );
   }
