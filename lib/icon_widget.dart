@@ -12,8 +12,8 @@ class MyApp extends StatelessWidget{
     return MaterialApp(
       home: Scaffold(
         body: Icon(
-          Icons.search,
           color: Colors.blueGrey,
+          Icons.search,
           size: 50,
         ),
       ),
