@@ -14,7 +14,11 @@ import 'padding_widget.dart';
 import 'scroll_view.dart';
 import 'sized_box.dart';
 import 'text_widget.dart';
-
+import 'column_vertical_direction.dart';
+import 'row_widget.dart';
+import 'row_main_axis_alignment.dart';
+import 'row_cross_axis_alignment.dart';
+import 'row_main_axis_size.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -141,6 +145,38 @@ class Apphome extends StatelessWidget {
             "Text Widget",
             const TextWidget(),
           ),
+
+          // Column Vertical Direction
+          buildCard(
+            context,
+            "Column Vertical Direction",
+            const ColumnVerticalDirectionWidget(),
+          ),
+
+          // Row Widget
+          buildCard(
+            context,
+            "Row Widget",
+            const RowWidget(),
+          ),
+          // Row Main Axis Alignment
+          buildCard(
+            context,
+            "Row Main Axis Alignment",
+            const RowMainAxisAlignmentWidget(),
+          ),
+          // Row Cross Axis Alignment
+          buildCard(
+            context,
+            "Row Cross Axis Alignment",
+            const RowCrossAxisAlignmentWidget(),
+          ),
+          // Row Main Axis Size
+          buildCard(
+            context,
+            "Row Main Axis Size",
+            const RowMainAxisSizeWidget(),
+          ),
         ],
       ),
     );
@@ -153,6 +189,12 @@ class Apphome extends StatelessWidget {
       ) {
     return Card(
       margin: const EdgeInsets.all(10),
+      color: Colors.cyanAccent,
+      elevation: 10,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+      shadowColor: Colors.black,
 
       child: ListTile(
         title: Text(title),
