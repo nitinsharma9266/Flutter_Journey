@@ -19,6 +19,12 @@ import 'row_widget.dart';
 import 'row_main_axis_alignment.dart';
 import 'row_cross_axis_alignment.dart';
 import 'row_main_axis_size.dart';
+import 'Days/Day7/food_product_card.dart';
+import 'Days/Day7/cupertino_basic.dart';
+import 'Days/Day7/stateful_basic.dart';
+import 'Days/Day7/Login_Screen_Project/Widgets/login_text_field.dart';
+import 'Days/Day7/Login_Screen_Project/Widgets/login_input_decoration.dart';
+import 'Days/Day7/Login_Screen_Project/Screens/login_screen.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -46,7 +52,7 @@ class Apphome extends StatelessWidget {
       ),
 
       body: ListView(
-        children: [
+        children: <Widget>[
 
           // 1. Align Widget
           buildCard(
@@ -177,6 +183,43 @@ class Apphome extends StatelessWidget {
             "Row Main Axis Size",
             const RowMainAxisSizeWidget(),
           ),
+          // Food Product Card
+          buildCard(
+            context,
+            "Food Product Card",
+            const FoodProductCard(),
+          ),
+          // Cupertino Basic
+          buildCard(
+            context,
+            "Cupertino Basic",
+            const CupertinoBasic(),
+          ),
+          // Stateful Widgets
+          buildCard(
+              context
+              , "Stateful Widget",
+              const StatefulBasic()
+          ),
+          // Login text Field
+          buildCard(
+              context,
+              "Login TextField",
+              const LoginTextField()
+          ),
+          // Login Input Decoration
+          buildCard(
+              context,
+              "Login Input Decoration",
+              const LoginInputDecoration()
+          ),
+          // Login Screen
+          buildCard(
+              context,
+              "Login Screen",
+              const LoginScreen()
+          ),
+
         ],
       ),
     );
