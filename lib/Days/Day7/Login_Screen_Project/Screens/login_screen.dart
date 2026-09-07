@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'home_screen.dart';
 import '../Widgets/login_button.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -39,7 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
       return;
     }
 
-    // Remove previous error and start loading
+    // Start loading
     setState(() {
       errorMessage = null;
       isLoading = true;
@@ -50,14 +51,23 @@ class _LoginScreenState extends State<LoginScreen> {
       const Duration(seconds: 2),
     );
 
-    // Correct login credentials
-    const String correctEmail = "admin@gmail.com";
-    const String correctPassword = "123456";
+    // Check widget is still active
+    if (!mounted) {
+      return;
+    }
 
-    // Get entered values
+    // Correct login credentials
+    const String correctEmail =
+        "admin@gmail.com";
+
+    const String correctPassword =
+        "123456";
+
+    // Get entered email
     final String enteredEmail =
     emailController.text.trim();
 
+    // Get entered password
     final String enteredPassword =
         passwordController.text;
 
@@ -68,11 +78,20 @@ class _LoginScreenState extends State<LoginScreen> {
         isLoading = false;
       });
 
-      print("Login successful");
+      // Navigate to Home Screen
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) {
+            return const HomeScreen();
+          },
+        ),
+      );
     } else {
       setState(() {
         isLoading = false;
-        errorMessage = "Invalid email or password";
+        errorMessage =
+        "Invalid email or password";
       });
     }
   }
@@ -102,7 +121,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       "Welcome Back",
                       style: TextStyle(
                         fontSize: 30,
-                        fontWeight: FontWeight.bold,
+                        fontWeight:
+                        FontWeight.bold,
                       ),
                     ),
                   ),
@@ -127,7 +147,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     "Email",
                     style: TextStyle(
                       fontSize: 16,
-                      fontWeight: FontWeight.bold,
+                      fontWeight:
+                      FontWeight.bold,
                     ),
                   ),
 
@@ -135,38 +156,49 @@ class _LoginScreenState extends State<LoginScreen> {
 
                   // Email field
                   TextFormField(
-                    controller: emailController,
+                    controller:
+                    emailController,
 
                     keyboardType:
-                    TextInputType.emailAddress,
+                    TextInputType
+                        .emailAddress,
 
-                    decoration: InputDecoration(
-                      hintText: "Enter your email",
+                    decoration:
+                    InputDecoration(
+                      hintText:
+                      "Enter your email",
 
-                      prefixIcon: const Icon(
+                      prefixIcon:
+                      const Icon(
                         Icons.email,
                       ),
 
-                      border: OutlineInputBorder(
+                      border:
+                      OutlineInputBorder(
                         borderRadius:
-                        BorderRadius.circular(12),
+                        BorderRadius
+                            .circular(12),
                       ),
 
                       filled: true,
-                      fillColor: Colors.white,
+                      fillColor:
+                      Colors.white,
                     ),
 
                     // Email validation
                     validator: (value) {
                       if (value == null ||
-                          value.trim().isEmpty) {
+                          value
+                              .trim()
+                              .isEmpty) {
                         return "Please enter your email";
                       }
 
                       final String email =
                       value.trim();
 
-                      final RegExp emailPattern =
+                      final RegExp
+                      emailPattern =
                       RegExp(
                         r'^[^@\s]+@[^@\s]+\.[^@\s]+$',
                       );
@@ -187,7 +219,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     "Password",
                     style: TextStyle(
                       fontSize: 16,
-                      fontWeight: FontWeight.bold,
+                      fontWeight:
+                      FontWeight.bold,
                     ),
                   ),
 
@@ -195,20 +228,24 @@ class _LoginScreenState extends State<LoginScreen> {
 
                   // Password field
                   TextFormField(
-                    controller: passwordController,
+                    controller:
+                    passwordController,
 
                     obscureText:
                     isPasswordHidden,
 
-                    decoration: InputDecoration(
+                    decoration:
+                    InputDecoration(
                       hintText:
                       "Enter your password",
 
-                      prefixIcon: const Icon(
+                      prefixIcon:
+                      const Icon(
                         Icons.lock,
                       ),
 
-                      suffixIcon: IconButton(
+                      suffixIcon:
+                      IconButton(
                         onPressed: () {
                           setState(() {
                             isPasswordHidden =
@@ -219,17 +256,21 @@ class _LoginScreenState extends State<LoginScreen> {
                         icon: Icon(
                           isPasswordHidden
                               ? Icons.visibility
-                              : Icons.visibility_off,
+                              : Icons
+                              .visibility_off,
                         ),
                       ),
 
-                      border: OutlineInputBorder(
+                      border:
+                      OutlineInputBorder(
                         borderRadius:
-                        BorderRadius.circular(12),
+                        BorderRadius
+                            .circular(12),
                       ),
 
                       filled: true,
-                      fillColor: Colors.white,
+                      fillColor:
+                      Colors.white,
                     ),
 
                     // Password validation
@@ -249,14 +290,15 @@ class _LoginScreenState extends State<LoginScreen> {
 
                   const SizedBox(height: 15),
 
-                  // Login error
+                  // Error message
                   if (errorMessage != null)
                     Text(
                       errorMessage!,
                       style: const TextStyle(
                         color: Colors.red,
                         fontSize: 14,
-                        fontWeight: FontWeight.bold,
+                        fontWeight:
+                        FontWeight.bold,
                       ),
                     ),
 
@@ -283,7 +325,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  // Controller cleanup
+  // Dispose controllers
   @override
   void dispose() {
     emailController.dispose();

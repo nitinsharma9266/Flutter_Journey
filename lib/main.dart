@@ -25,6 +25,10 @@ import 'Days/Day7/stateful_basic.dart';
 import 'Days/Day7/Login_Screen_Project/Widgets/login_text_field.dart';
 import 'Days/Day7/Login_Screen_Project/Widgets/login_input_decoration.dart';
 import 'Days/Day7/Login_Screen_Project/Screens/login_screen.dart';
+import 'Days/Day7/Login_Screen_Project/Screens/home_screen.dart';
+import 'Days/Day_8/stack_example.dart';
+import 'Days/Day_8/flexible_example.dart';
+import 'Days/Day_8/widget_practice.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -219,7 +223,32 @@ class Apphome extends StatelessWidget {
               "Login Screen",
               const LoginScreen()
           ),
+          // Home Screen
+          buildCard(
+              context,
+              "Home Screen",
+              const HomeScreen()
+          ),
+          // Stack Example
+          buildCard(
+              context,
+              "Stack Example",
+              const StackExample()
+          ),
 
+          // Flexible Example
+          buildCard(
+              context,
+              "Flexible Example",
+              const FlexibleExample()
+          ),
+
+          // Widget Practice
+          buildCard(
+              context,
+              "Widget Practice",
+              const WidgetPractice()
+          ),
         ],
       ),
     );
