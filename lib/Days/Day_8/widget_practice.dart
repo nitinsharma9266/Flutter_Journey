@@ -1,6 +1,377 @@
 import 'package:flutter/material.dart';
 
+// ==================== FORM ====================
 
+class WidgetPractice extends StatefulWidget {
+  const WidgetPractice({super.key});
+
+  @override
+  State<WidgetPractice> createState() {
+    return _WidgetPracticeState();
+  }
+}
+
+class _WidgetPracticeState extends State<WidgetPractice> {
+
+  // =====================================================
+  // FORM KEY
+  // =====================================================
+
+  final formKey = GlobalKey<FormState>();
+
+  // =====================================================
+  // VARIABLES
+  // =====================================================
+
+  String customerName = "";
+  String phoneNumber = "";
+  String address = "";
+
+  // =====================================================
+  // FORM SUBMIT
+  // =====================================================
+
+  void placeOrder() {
+
+    // Validate all fields
+    if (formKey.currentState!.validate()) {
+
+      // Save all fields
+      formKey.currentState!.save();
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+            "Order placed successfully! 🎉",
+          ),
+        ),
+      );
+
+      print("Customer Name: $customerName");
+      print("Phone Number: $phoneNumber");
+      print("Address: $address");
+    }
+  }
+
+  // =====================================================
+  // RESET FORM
+  // =====================================================
+
+  void resetForm() {
+
+    formKey.currentState!.reset();
+
+    setState(() {
+      customerName = "";
+      phoneNumber = "";
+      address = "";
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Checkout"),
+      ),
+
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(20),
+
+        child: Card(
+          elevation: 5,
+
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
+
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+
+            // =================================================
+            // FORM
+            // =================================================
+
+            child: Form(
+              key: formKey,
+
+              onChanged: () {
+                print("Form changed");
+              },
+
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+
+                children: [
+
+                  // =================================================
+                  // TITLE
+                  // =================================================
+
+                  const Text(
+                    "Delivery Details",
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+
+                  const SizedBox(height: 20),
+
+                  // =================================================
+                  // NAME
+                  // =================================================
+
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      labelText: "Customer Name",
+                      hintText: "Enter your name",
+                      border: OutlineInputBorder(),
+                      prefixIcon: Icon(Icons.person),
+                    ),
+
+                    validator: (value) {
+
+                      if (value == null || value.isEmpty) {
+                        return "Please enter your name";
+                      }
+
+                      return null;
+                    },
+
+                    onSaved: (value) {
+                      customerName = value!;
+                    },
+                  ),
+
+                  const SizedBox(height: 15),
+
+                  // =================================================
+                  // PHONE
+                  // =================================================
+
+                  TextFormField(
+                    keyboardType: TextInputType.phone,
+
+                    decoration: const InputDecoration(
+                      labelText: "Phone Number",
+                      hintText: "Enter your phone number",
+                      border: OutlineInputBorder(),
+                      prefixIcon: Icon(Icons.phone),
+                    ),
+
+                    validator: (value) {
+
+                      if (value == null || value.isEmpty) {
+                        return "Please enter phone number";
+                      }
+
+                      if (value.length != 10) {
+                        return "Phone number must be 10 digits";
+                      }
+
+                      return null;
+                    },
+
+                    onSaved: (value) {
+                      phoneNumber = value!;
+                    },
+                  ),
+
+                  const SizedBox(height: 15),
+
+                  // =================================================
+                  // ADDRESS
+                  // =================================================
+
+                  TextFormField(
+                    maxLines: 3,
+
+                    decoration: const InputDecoration(
+                      labelText: "Delivery Address",
+                      hintText: "Enter your complete address",
+                      border: OutlineInputBorder(),
+                      prefixIcon: Icon(Icons.location_on),
+                    ),
+
+                    validator: (value) {
+
+                      if (value == null || value.isEmpty) {
+                        return "Please enter delivery address";
+                      }
+
+                      return null;
+                    },
+
+                    onSaved: (value) {
+                      address = value!;
+                    },
+                  ),
+
+                  const Divider(
+                    height: 35,
+                  ),
+
+                  // =================================================
+                  // PLACE ORDER
+                  // =================================================
+
+                  SizedBox(
+                    width: double.infinity,
+
+                    child: ElevatedButton(
+                      onPressed: placeOrder,
+
+                      child: const Text(
+                        "Place Order",
+                      ),
+                    ),
+                  ),
+
+                  const SizedBox(height: 10),
+
+                  // =================================================
+                  // RESET
+                  // =================================================
+
+                  SizedBox(
+                    width: double.infinity,
+
+                    child: OutlinedButton(
+                      onPressed: resetForm,
+
+                      child: const Text(
+                        "Reset Form",
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+
+/*
+//===================outlinedButton Example==============
+class WidgetPractice extends StatelessWidget {
+  const WidgetPractice({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("OutlinedButton Example"),
+      ),
+
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+
+        child: Card(
+          elevation: 5,
+
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
+
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+
+              children: [
+
+                const Text(
+                  "Cheese Burst Pizza",
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+
+                const SizedBox(height: 10),
+
+                const Text(
+                  "Extra cheese with fresh vegetables",
+                  style: TextStyle(
+                    fontSize: 16,
+                  ),
+                ),
+
+                const SizedBox(height: 10),
+
+                const Text(
+                  "⭐ 4.5",
+                  style: TextStyle(
+                    fontSize: 18,
+                  ),
+                ),
+
+                const Divider(
+                  height: 30,
+                ),
+
+                const Text(
+                  "₹299",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+
+                const SizedBox(height: 20),
+
+                // ==========================================
+                // PRIMARY ACTION
+                // ==========================================
+
+                SizedBox(
+                  width: double.infinity,
+
+                  child: ElevatedButton(
+                    onPressed: () {},
+
+                    child: const Text(
+                      "Add to Cart",
+                    ),
+                  ),
+                ),
+
+                const SizedBox(height: 10),
+
+                // ==========================================
+                // NEW WIDGET → OUTLINED BUTTON
+                // ==========================================
+
+                SizedBox(
+                  width: double.infinity,
+
+                  child: OutlinedButton(
+                    onPressed: () {},
+
+                    child: const Text(
+                      "View Reviews",
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+
+//==========Navigation Example==========
 // =====================================================
 // HOME SCREEN
 // =====================================================
@@ -224,8 +595,6 @@ class ProductDetailsScreen extends StatelessWidget {
 }
 
 
-
-/*
 //=============StatefulWidget Example==============
 class WidgetPractice extends StatefulWidget {
   const WidgetPractice({super.key});
