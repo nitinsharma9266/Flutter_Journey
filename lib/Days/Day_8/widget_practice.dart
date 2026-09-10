@@ -1,5 +1,246 @@
 import 'package:flutter/material.dart';
 
+class WidgetPractice extends StatelessWidget {
+  const WidgetPractice({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("WhatsApp"),
+      ),
+
+      body: ListView(
+        children: [
+
+          // =================================================
+          // CHAT 1
+          // =================================================
+
+          ListTile(
+            contentPadding: const EdgeInsets.symmetric(
+              horizontal: 15,
+              vertical: 5,
+            ),
+
+            leading: const CircleAvatar(
+              radius: 25,
+              child: Icon(Icons.person),
+            ),
+
+            title: const Text(
+              "Rahul Sharma",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 17,
+              ),
+            ),
+
+            subtitle: const Text(
+              "Kal meeting hai?",
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+
+            trailing: const Text(
+              "8:45 PM",
+              style: TextStyle(
+                fontSize: 12,
+              ),
+            ),
+
+            onTap: () {
+              print("Rahul Sharma chat opened");
+            },
+          ),
+
+          const Divider(
+            height: 1,
+          ),
+
+          // =================================================
+          // CHAT 2
+          // =================================================
+
+          ListTile(
+            contentPadding: const EdgeInsets.symmetric(
+              horizontal: 15,
+              vertical: 5,
+            ),
+
+            leading: const CircleAvatar(
+              radius: 25,
+              child: Icon(Icons.person),
+            ),
+
+            title: const Text(
+              "Amit Kumar",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 17,
+              ),
+            ),
+
+            subtitle: const Text(
+              "Okay bro 👍",
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+
+            trailing: const Text(
+              "8:30 PM",
+              style: TextStyle(
+                fontSize: 12,
+              ),
+            ),
+
+            onTap: () {
+              print("Amit Kumar chat opened");
+            },
+          ),
+
+          const Divider(
+            height: 1,
+          ),
+
+          // =================================================
+          // CHAT 3
+          // =================================================
+
+          ListTile(
+            contentPadding: const EdgeInsets.symmetric(
+              horizontal: 15,
+              vertical: 5,
+            ),
+
+            leading: const CircleAvatar(
+              radius: 25,
+              child: Icon(Icons.person),
+            ),
+
+            title: const Text(
+              "Priya",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 17,
+              ),
+            ),
+
+            subtitle: const Text(
+              "Photo bhej dena",
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+
+            trailing: const Text(
+              "8:10 PM",
+              style: TextStyle(
+                fontSize: 12,
+              ),
+            ),
+
+            onTap: () {
+              print("Priya chat opened");
+            },
+          ),
+
+          const Divider(
+            height: 1,
+          ),
+
+          // =================================================
+          // CHAT 4
+          // =================================================
+
+          ListTile(
+            contentPadding: const EdgeInsets.symmetric(
+              horizontal: 15,
+              vertical: 5,
+            ),
+
+            leading: const CircleAvatar(
+              radius: 25,
+              child: Icon(Icons.person),
+            ),
+
+            title: const Text(
+              "Rohit",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 17,
+              ),
+            ),
+
+            subtitle: const Text(
+              "Where are you?",
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+
+            trailing: const Text(
+              "7:55 PM",
+              style: TextStyle(
+                fontSize: 12,
+              ),
+            ),
+
+            onTap: () {
+              print("Rohit chat opened");
+            },
+          ),
+
+          const Divider(
+            height: 1,
+          ),
+
+          // =================================================
+          // CHAT 5
+          // =================================================
+
+          ListTile(
+            contentPadding: const EdgeInsets.symmetric(
+              horizontal: 15,
+              vertical: 5,
+            ),
+
+            leading: const CircleAvatar(
+              radius: 25,
+              child: Icon(Icons.person),
+            ),
+
+            title: const Text(
+              "Neha",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 17,
+              ),
+            ),
+
+            subtitle: const Text(
+              "Good night 🌙",
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+
+            trailing: const Text(
+              "7:30 PM",
+              style: TextStyle(
+                fontSize: 12,
+              ),
+            ),
+
+            onTap: () {
+              print("Neha chat opened");
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+
+/*
 // ==================== FORM ====================
 
 class WidgetPractice extends StatefulWidget {
@@ -256,8 +497,6 @@ class _WidgetPracticeState extends State<WidgetPractice> {
 }
 
 
-
-/*
 //===================outlinedButton Example==============
 class WidgetPractice extends StatelessWidget {
   const WidgetPractice({super.key});
