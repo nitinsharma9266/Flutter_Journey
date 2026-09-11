@@ -1,5 +1,132 @@
 import 'package:flutter/material.dart';
 
+//===========ListView==========
+class WidgetPractice extends StatelessWidget {
+  const WidgetPractice({super.key});
+
+  // Product data
+  final List<Map<String, dynamic>> products = const [
+    {
+      "name": "Wireless Headphones",
+      "price": "₹1,499",
+      "icon": Icons.headphones,
+      "color": Colors.blue,
+    },
+    {
+      "name": "Smart Watch",
+      "price": "₹2,999",
+      "icon": Icons.watch,
+      "color": Colors.orange,
+    },
+    {
+      "name": "Running Shoes",
+      "price": "₹1,999",
+      "icon": Icons.directions_run,
+      "color": Colors.green,
+    },
+    {
+      "name": "Laptop Backpack",
+      "price": "₹899",
+      "icon": Icons.backpack,
+      "color": Colors.purple,
+    },
+    {
+      "name": "Bluetooth Speaker",
+      "price": "₹1,299",
+      "icon": Icons.speaker,
+      "color": Colors.red,
+    },
+    {
+      "name": "Mobile Stand",
+      "price": "₹399",
+      "icon": Icons.phone_android,
+      "color": Colors.teal,
+    },
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("My Shopping App"),
+        backgroundColor: Colors.blue,
+        foregroundColor: Colors.white,
+      ),
+
+      body: ListView.builder(
+        padding: const EdgeInsets.all(12),
+
+        // List mein kitne items hain
+        itemCount: products.length,
+
+        // Har item ka UI
+        itemBuilder: (context, index) {
+          final product = products[index];
+
+          return Card(
+            elevation: 4,
+            margin: const EdgeInsets.only(bottom: 12),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+            ),
+
+            child: ListTile(
+              contentPadding: const EdgeInsets.all(12),
+
+              leading: CircleAvatar(
+                radius: 28,
+                backgroundColor: product["color"],
+                child: Icon(
+                  product["icon"],
+                  color: Colors.white,
+                  size: 28,
+                ),
+              ),
+
+              title: Text(
+                product["name"],
+                style: const TextStyle(
+                  fontSize: 17,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+
+              subtitle: Padding(
+                padding: const EdgeInsets.only(top: 6),
+                child: Text(
+                  product["price"],
+                  style: const TextStyle(
+                    fontSize: 15,
+                    color: Colors.green,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+
+              trailing: ElevatedButton(
+                onPressed: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        "${product["name"]} cart mein add ho gaya",
+                      ),
+                    ),
+                  );
+                },
+                child: const Text("Add"),
+              ),
+
+              onTap: () {
+                print("${product["name"]} selected");
+              },
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+/*
 class WidgetPractice extends StatelessWidget {
   const WidgetPractice({super.key});
 
@@ -12,7 +139,6 @@ class WidgetPractice extends StatelessWidget {
 
       body: ListView(
         children: [
-
           // =================================================
           // CHAT 1
           // =================================================
@@ -238,264 +364,6 @@ class WidgetPractice extends StatelessWidget {
     );
   }
 }
-
-
-/*
-// ==================== FORM ====================
-
-class WidgetPractice extends StatefulWidget {
-  const WidgetPractice({super.key});
-
-  @override
-  State<WidgetPractice> createState() {
-    return _WidgetPracticeState();
-  }
-}
-
-class _WidgetPracticeState extends State<WidgetPractice> {
-
-  // =====================================================
-  // FORM KEY
-  // =====================================================
-
-  final formKey = GlobalKey<FormState>();
-
-  // =====================================================
-  // VARIABLES
-  // =====================================================
-
-  String customerName = "";
-  String phoneNumber = "";
-  String address = "";
-
-  // =====================================================
-  // FORM SUBMIT
-  // =====================================================
-
-  void placeOrder() {
-
-    // Validate all fields
-    if (formKey.currentState!.validate()) {
-
-      // Save all fields
-      formKey.currentState!.save();
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text(
-            "Order placed successfully! 🎉",
-          ),
-        ),
-      );
-
-      print("Customer Name: $customerName");
-      print("Phone Number: $phoneNumber");
-      print("Address: $address");
-    }
-  }
-
-  // =====================================================
-  // RESET FORM
-  // =====================================================
-
-  void resetForm() {
-
-    formKey.currentState!.reset();
-
-    setState(() {
-      customerName = "";
-      phoneNumber = "";
-      address = "";
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Checkout"),
-      ),
-
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(20),
-
-        child: Card(
-          elevation: 5,
-
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15),
-          ),
-
-          child: Padding(
-            padding: const EdgeInsets.all(20),
-
-            // =================================================
-            // FORM
-            // =================================================
-
-            child: Form(
-              key: formKey,
-
-              onChanged: () {
-                print("Form changed");
-              },
-
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-
-                children: [
-
-                  // =================================================
-                  // TITLE
-                  // =================================================
-
-                  const Text(
-                    "Delivery Details",
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-
-                  const SizedBox(height: 20),
-
-                  // =================================================
-                  // NAME
-                  // =================================================
-
-                  TextFormField(
-                    decoration: const InputDecoration(
-                      labelText: "Customer Name",
-                      hintText: "Enter your name",
-                      border: OutlineInputBorder(),
-                      prefixIcon: Icon(Icons.person),
-                    ),
-
-                    validator: (value) {
-
-                      if (value == null || value.isEmpty) {
-                        return "Please enter your name";
-                      }
-
-                      return null;
-                    },
-
-                    onSaved: (value) {
-                      customerName = value!;
-                    },
-                  ),
-
-                  const SizedBox(height: 15),
-
-                  // =================================================
-                  // PHONE
-                  // =================================================
-
-                  TextFormField(
-                    keyboardType: TextInputType.phone,
-
-                    decoration: const InputDecoration(
-                      labelText: "Phone Number",
-                      hintText: "Enter your phone number",
-                      border: OutlineInputBorder(),
-                      prefixIcon: Icon(Icons.phone),
-                    ),
-
-                    validator: (value) {
-
-                      if (value == null || value.isEmpty) {
-                        return "Please enter phone number";
-                      }
-
-                      if (value.length != 10) {
-                        return "Phone number must be 10 digits";
-                      }
-
-                      return null;
-                    },
-
-                    onSaved: (value) {
-                      phoneNumber = value!;
-                    },
-                  ),
-
-                  const SizedBox(height: 15),
-
-                  // =================================================
-                  // ADDRESS
-                  // =================================================
-
-                  TextFormField(
-                    maxLines: 3,
-
-                    decoration: const InputDecoration(
-                      labelText: "Delivery Address",
-                      hintText: "Enter your complete address",
-                      border: OutlineInputBorder(),
-                      prefixIcon: Icon(Icons.location_on),
-                    ),
-
-                    validator: (value) {
-
-                      if (value == null || value.isEmpty) {
-                        return "Please enter delivery address";
-                      }
-
-                      return null;
-                    },
-
-                    onSaved: (value) {
-                      address = value!;
-                    },
-                  ),
-
-                  const Divider(
-                    height: 35,
-                  ),
-
-                  // =================================================
-                  // PLACE ORDER
-                  // =================================================
-
-                  SizedBox(
-                    width: double.infinity,
-
-                    child: ElevatedButton(
-                      onPressed: placeOrder,
-
-                      child: const Text(
-                        "Place Order",
-                      ),
-                    ),
-                  ),
-
-                  const SizedBox(height: 10),
-
-                  // =================================================
-                  // RESET
-                  // =================================================
-
-                  SizedBox(
-                    width: double.infinity,
-
-                    child: OutlinedButton(
-                      onPressed: resetForm,
-
-                      child: const Text(
-                        "Reset Form",
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
 
 //===================outlinedButton Example==============
 class WidgetPractice extends StatelessWidget {
