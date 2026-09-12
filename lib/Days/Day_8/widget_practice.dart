@@ -1,5 +1,128 @@
 import 'package:flutter/material.dart';
 
+class WidgetPractice extends StatelessWidget {
+  const WidgetPractice({super.key});
+
+  final List<Map<String, dynamic>> categories = const [
+    {
+      "name": "Mobiles",
+      "icon": Icons.phone_android,
+      "color": Colors.blue,
+    },
+    {
+      "name": "Laptops",
+      "icon": Icons.laptop,
+      "color": Colors.orange,
+    },
+    {
+      "name": "Fashion",
+      "icon": Icons.checkroom,
+      "color": Colors.pink,
+    },
+    {
+      "name": "Shoes",
+      "icon": Icons.shopping_bag,
+      "color": Colors.green,
+    },
+    {
+      "name": "Watches",
+      "icon": Icons.watch,
+      "color": Colors.purple,
+    },
+    {
+      "name": "Headphones",
+      "icon": Icons.headphones,
+      "color": Colors.red,
+    },
+    {
+      "name": "Books",
+      "icon": Icons.book,
+      "color": Colors.teal,
+    },
+    {
+      "name": "Furniture",
+      "icon": Icons.chair,
+      "color": Colors.brown,
+    },
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Shopping Categories"),
+        backgroundColor: Colors.blue,
+        foregroundColor: Colors.white,
+      ),
+
+      body: GridView.builder(
+        padding: const EdgeInsets.all(15),
+
+        // Kitne items dikhane hain
+        itemCount: categories.length,
+
+        // Grid ka layout
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 15,
+          mainAxisSpacing: 15,
+          childAspectRatio: 1,
+        ),
+
+        // Har grid item ka UI
+        itemBuilder: (context, index) {
+          final category = categories[index];
+
+          return GestureDetector(
+            onTap: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(
+                    "${category["name"]} category selected",
+                  ),
+                ),
+              );
+            },
+
+            child: Card(
+              elevation: 5,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(18),
+              ),
+
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircleAvatar(
+                    radius: 32,
+                    backgroundColor: category["color"],
+                    child: Icon(
+                      category["icon"],
+                      color: Colors.white,
+                      size: 32,
+                    ),
+                  ),
+
+                  const SizedBox(height: 12),
+
+                  Text(
+                    category["name"],
+                    style: const TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+
+/*
 //===========ListView==========
 class WidgetPractice extends StatelessWidget {
   const WidgetPractice({super.key});
@@ -126,7 +249,7 @@ class WidgetPractice extends StatelessWidget {
     );
   }
 }
-/*
+
 class WidgetPractice extends StatelessWidget {
   const WidgetPractice({super.key});
 
