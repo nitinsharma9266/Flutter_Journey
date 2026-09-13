@@ -3,6 +3,41 @@ import 'package:flutter/material.dart';
 class WidgetPractice extends StatelessWidget {
   const WidgetPractice({super.key});
 
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text("Padding Widget"),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Container(
+            width: double.infinity,
+            height: 200,
+            color: Colors.blue,
+            child: const Center(
+              child: Text(
+                "Hello Flutter",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/*
+//=============GridView Example==========
+class WidgetPractice extends StatelessWidget {
+  const WidgetPractice({super.key});
+
   final List<Map<String, dynamic>> categories = const [
     {
       "name": "Mobiles",
@@ -122,7 +157,7 @@ class WidgetPractice extends StatelessWidget {
   }
 }
 
-/*
+
 //===========ListView==========
 class WidgetPractice extends StatelessWidget {
   const WidgetPractice({super.key});
