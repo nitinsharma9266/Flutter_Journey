@@ -5,6 +5,166 @@ class WidgetPractice extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Product Details"),
+        backgroundColor: Colors.blue,
+        foregroundColor: Colors.white,
+      ),
+
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Online product image
+            Image.network(
+              "https://images.unsplash.com/photo-1505740420928-5e560c06d30e"
+              "?auto=format&fit=crop&w=800&q=80",
+
+              height: 300,
+              width: double.infinity,
+              fit: BoxFit.cover,
+
+              loadingBuilder: (
+                context,
+                child,
+                loadingProgress,
+              ) {
+                if (loadingProgress == null) {
+                  return child;
+                }
+
+                return const SizedBox(
+                  height: 300,
+                  child: Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                );
+              },
+
+              errorBuilder: (context, error, stackTrace) {
+                return const SizedBox(
+                  height: 300,
+                  child: Center(
+                    child: Icon(
+                      Icons.broken_image,
+                      size: 80,
+                      color: Colors.grey,
+                    ),
+                  ),
+                );
+              },
+            ),
+
+            Padding(
+              padding: const EdgeInsets.all(18),
+
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    "Wireless Headphones",
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+
+                  const SizedBox(height: 10),
+
+                  Row(
+                    children: [
+                      const Icon(
+                        Icons.star,
+                        color: Colors.orange,
+                        size: 22,
+                      ),
+
+                      const SizedBox(width: 5),
+
+                      const Text(
+                        "4.5 (120 Reviews)",
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 15,
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  const SizedBox(height: 15),
+
+                  const Text(
+                    "₹1,499",
+                    style: TextStyle(
+                      fontSize: 26,
+                      color: Colors.green,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+
+                  const SizedBox(height: 15),
+
+                  const Text(
+                    "Product Description",
+                    style: TextStyle(
+                      fontSize: 19,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+
+                  const SizedBox(height: 8),
+
+                  const Text(
+                    "These wireless headphones provide clear sound, "
+                    "comfortable ear cushions and long battery life. "
+                    "They are perfect for music, calls and online classes.",
+                    style: TextStyle(
+                      fontSize: 16,
+                      height: 1.5,
+                      color: Colors.grey,
+                    ),
+                  ),
+
+                  const SizedBox(height: 25),
+
+                  SizedBox(
+                    width: double.infinity,
+                    height: 52,
+
+                    child: ElevatedButton(
+                      onPressed: () {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("Product added to cart"),
+                          ),
+                        );
+                      },
+                      child: const Text(
+                        "Add to Cart",
+                        style: TextStyle(fontSize: 17),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+/*
+
+// Padding Widget
+class WidgetPractice extends StatelessWidget {
+  const WidgetPractice({super.key});
+
+  @override
+  Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -33,7 +193,7 @@ class WidgetPractice extends StatelessWidget {
   }
 }
 
-/*
+
 //=============GridView Example==========
 class WidgetPractice extends StatelessWidget {
   const WidgetPractice({super.key});
