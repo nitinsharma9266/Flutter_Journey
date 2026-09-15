@@ -1,5 +1,218 @@
 import 'package:flutter/material.dart';
 
+class WidgetPractice extends StatefulWidget {
+  const WidgetPractice({super.key});
+
+  @override
+  State<WidgetPractice> createState() => _WidgetPracticeState();
+}
+
+class _WidgetPracticeState extends State<WidgetPractice> {
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+  void submitForm() {
+    final isValid = formKey.currentState!.validate();
+
+    if (isValid) {
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Form submitted successfully"),
+          backgroundColor: Colors.green,
+          duration: Duration(seconds: 3),
+        ),
+      );
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Form Validation"),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Form(
+          key: formKey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextFormField(
+                keyboardType: TextInputType.emailAddress,
+                decoration: const InputDecoration(
+                  labelText: "Email",
+                  hintText: "Enter your email",
+                  prefixIcon: Icon(Icons.email),
+                  border: OutlineInputBorder(),
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Please enter your email";
+                  }
+
+                  if (!value.contains("@")) {
+                    return "Enter a valid email";
+                  }
+
+                  return null;
+                },
+              ),
+
+              const SizedBox(height: 20),
+
+              TextFormField(
+                obscureText: true,
+                decoration: const InputDecoration(
+                  labelText: "Password",
+                  hintText: "Enter your password",
+                  prefixIcon: Icon(Icons.lock),
+                  border: OutlineInputBorder(),
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Please enter your password";
+                  }
+
+                  if (value.length < 6) {
+                    return "Password must be at least 6 characters";
+                  }
+
+                  return null;
+                },
+              ),
+
+              const SizedBox(height: 25),
+
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: submitForm,
+                  child: const Text("Submit"),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+/*
+//==============TextField=========
+class WidgetPractice extends StatefulWidget {
+  const WidgetPractice({super.key});
+
+  @override
+  State<WidgetPractice> createState() => _WidgetPracticeState();
+}
+
+class _WidgetPracticeState extends State<WidgetPractice> {
+  final TextEditingController nameController = TextEditingController();
+
+  String enteredName = "";
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("TextField Practice"),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TextField(
+              controller: nameController,
+              decoration: const InputDecoration(
+                labelText: "Enter your name",
+                hintText: "Example: Nitin",
+                prefixIcon: Icon(Icons.person),
+                border: OutlineInputBorder(),
+              ),
+            ),
+
+            const SizedBox(height: 20),
+
+            ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  enteredName = nameController.text;
+                });
+              },
+              child: const Text("Submit"),
+            ),
+
+            const SizedBox(height: 20),
+
+            Text(
+              enteredName.isEmpty
+                  ? "Your name will appear here"
+                  : "Hello, $enteredName",
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+//==========CheckBox===========
+class WidgetPractice extends StatefulWidget {
+  const WidgetPractice({super.key});
+
+  @override
+  State<WidgetPractice> createState() => _WidgetPracticeState();
+}
+
+class _WidgetPracticeState extends State<WidgetPractice> {
+  bool isChecked = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Checkbox Practice"),
+      ),
+      body: Center(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Checkbox(
+              value: isChecked,
+              onChanged: (value) {
+                setState(() {
+                  isChecked = value!;
+                });
+              },
+            ),
+            const Text(
+              "I accept the terms",
+              style: TextStyle(fontSize: 18),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+
+//============SinglechildSrollView========
 class WidgetPractice extends StatelessWidget {
   const WidgetPractice({super.key});
 
@@ -157,7 +370,7 @@ class WidgetPractice extends StatelessWidget {
 }
 
 
-/*
+
 
 // Padding Widget
 class WidgetPractice extends StatelessWidget {
