@@ -29,6 +29,7 @@ import 'Days/Day7/Login_Screen_Project/Screens/home_screen.dart';
 import 'Days/Day_8/stack_example.dart';
 import 'Days/Day_8/flexible_example.dart';
 import 'Days/Day_8/widget_practice.dart';
+import 'Days/Day_9/practice_questions.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -248,6 +249,12 @@ class Apphome extends StatelessWidget {
               context,
               "Widget Practice",
               const WidgetPractice()
+          ),
+          // Practice Questions
+          buildCard(
+              context,
+              "Practice Questions",
+              const PracticeQuestions()
           ),
         ],
       ),
