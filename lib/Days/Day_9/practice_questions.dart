@@ -192,6 +192,9 @@ class PracticeQuestions extends StatelessWidget {
       ),
       body:SafeArea(
         child: SingleChildScrollView(
+
+          //Location Part
+
           child: Card(
             elevation: 5,
             shape: RoundedRectangleBorder(
@@ -204,38 +207,216 @@ class PracticeQuestions extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(16),
 
-                child:Row(
+                child:Column(
                   children: [
-                    Icon(
-                      Icons.location_on,
-                      color: Colors.blue,
-                      size: 30,
+
+                    // 📍 Location Row
+                    Row(
+                      children: [
+                        const Icon(Icons.location_on),
+
+                        const Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Deliver to"),
+                            Text("Kesvan, Hardoi"),
+                          ],
+                        ),
+
+                        const Spacer(),
+
+                        const Icon(Icons.notifications),
+                      ],
                     ),
-                     const Text(
-                       "Deliver to ",
 
-                     style: TextStyle(
-                       fontSize: 16,
-                       fontWeight: FontWeight.normal,
+                    const SizedBox(height: 15),
 
-                     ),
-                     ),
-                     const SizedBox(height: 10,),
-                      const Text(
-                       "Kesvan , Hardoi",
-                       style: TextStyle(
-                         fontSize: 16,
-                         fontWeight: FontWeight.normal,
+                    const Divider(
+                      thickness: 1,
 
-                       ),
-                     ),
+                    ),
+
+                    // 🔍 Search Bar — location ke neeche
+                    Container(
+                      height: 45,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: Colors.grey),
+                      ),
+                      child: const Row(
+                        children: [
+                          Expanded(
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 12),
+                              child: Text(
+                                "Search restaurants or food",
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                ),
+                              ),
+                            ),
+                          ),
+
+                          Icon(
+                            Icons.search,
+                            color: Colors.blue,
+                          ),
+
+                          SizedBox(width: 12),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 15),
+                    const Divider(
+                      thickness: 1,
+
+                    ),
+
+                    // OFFER BANNER
+
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Container(
+                            height: 150,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+
+                            // ❌ const Padding hata diya
+                            child: Padding(
+                              padding: const EdgeInsets.all(12),
+
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+
+                                  const Text(
+                                    "50% OFF on First Order",
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+
+                                  const SizedBox(height: 5),
+
+                                  const Text(
+                                    "Order your favourite food",
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+
+                                  const Spacer(),
+
+                                  // 🌈 Colorful Button
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      gradient: const LinearGradient(
+                                        colors: [
+                                          Colors.blue,
+                                          Colors.purple,
+                                        ],
+                                      ),
+                                      borderRadius: BorderRadius.circular(25),
+                                    ),
+
+                                    child: ElevatedButton(
+                                      onPressed: () {
+                                        print("Order button pressed");
+                                      },
+
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.transparent,
+                                        shadowColor: Colors.transparent,
+                                        foregroundColor: Colors.white,
+
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 25,
+                                          vertical: 10,
+                                        ),
+
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(25),
+                                        ),
+                                      ),
+
+                                      child: const Text(
+                                        "Order",
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 15),
+                    const Divider(
+                      thickness: 1,
+                    ),
+                    const SizedBox(height: 15),
+
+                    // Catagories
+                    Center(
+                      child: const Text(
+                        "Catagories",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+
+                    Row(
+                      children: [
+                        Flexible(
+                          child: Expanded(
+                            child: Column(
+                              children:[
+                                Icon(
+                                  Icons.local_pizza_sharp,
+                                  size: 20,
+                                  color: Colors.yellow[500],
+                                ),
+                                const Text(
+                                  "Pizza",
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 15),
+
                   ],
-                ),
+                )
               ),
             ),
           ),
+
         ),
       );
+
+
+
 
   }
 
