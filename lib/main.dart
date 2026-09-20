@@ -1,38 +1,56 @@
 import 'package:flutter/material.dart';
 
-import 'align_widget.dart';
-import 'button_widget.dart';
-import 'center_widget.dart';
-import 'column_cross_axis.dart';
-import 'column_main_axis_size.dart';
-import 'column_widget.dart';
-import 'container_widget.dart';
-import 'hello_flutter.dart';
-import 'icon_widget.dart';
-import 'image_widget.dart';
-import 'padding_widget.dart';
-import 'scroll_view.dart';
-import 'sized_box.dart';
-import 'text_widget.dart';
-import 'column_vertical_direction.dart';
-import 'row_widget.dart';
-import 'row_main_axis_alignment.dart';
-import 'row_cross_axis_alignment.dart';
-import 'row_main_axis_size.dart';
+// ================= WIDGETS =================
+
+import 'Widgets/align_widget.dart';
+import 'Widgets/button_widget.dart';
+import 'Widgets/center_widget.dart';
+import 'Widgets/column_cross_axis.dart';
+import 'Widgets/column_main_axis_size.dart';
+import 'Widgets/column_widget.dart';
+import 'Widgets/container_widget.dart';
+import 'Widgets/hello_flutter.dart';
+import 'Widgets/icon_widget.dart';
+import 'Widgets/image_widget.dart';
+import 'Widgets/padding_widget.dart';
+import 'Widgets/scroll_view.dart';
+import 'Widgets/sized_box.dart';
+import 'Widgets/text_widget.dart';
+import 'Widgets/column_vertical_direction.dart';
+import 'Widgets/row_widget.dart';
+import 'Widgets/row_main_axis_alignment.dart';
+import 'Widgets/row_cross_axis_alignment.dart';
+import 'Widgets/row_main_axis_size.dart';
+
+
+// ================= DAYS =================
+
 import 'Days/Day7/food_product_card.dart';
 import 'Days/Day7/cupertino_basic.dart';
 import 'Days/Day7/stateful_basic.dart';
+
 import 'Days/Day7/Login_Screen_Project/Widgets/login_text_field.dart';
 import 'Days/Day7/Login_Screen_Project/Widgets/login_input_decoration.dart';
+
 import 'Days/Day7/Login_Screen_Project/Screens/login_screen.dart';
 import 'Days/Day7/Login_Screen_Project/Screens/home_screen.dart';
+
 import 'Days/Day_8/stack_example.dart';
 import 'Days/Day_8/flexible_example.dart';
 import 'Days/Day_8/widget_practice.dart';
+
 import 'Days/Day_9/practice_questions.dart';
+
+
+// ================= FOOD DELIVERY APP =================
+
+import 'Food_Delivery_App/Front_Screen/homescreen.dart';
+
+
 void main() {
   runApp(const MyApp());
 }
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -41,10 +59,24 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+
+      title: "Flutter Learning",
+
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.blue,
+        ),
+      ),
+
       home: const Apphome(),
     );
   }
 }
+
+
+// =====================================================
+//                    APP HOME
+// =====================================================
 
 class Apphome extends StatelessWidget {
   const Apphome({super.key});
@@ -52,214 +84,228 @@ class Apphome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       appBar: AppBar(
         title: const Text("Flutter Learning"),
+        centerTitle: true,
+        backgroundColor: Colors.blue,
+        foregroundColor: Colors.white,
       ),
 
       body: ListView(
         children: <Widget>[
 
-          // 1. Align Widget
+          // ================= WIDGETS =================
+
           buildCard(
             context,
             "Align Widget",
             const AlignWidget(),
           ),
 
-          // 2. Button Widget
           buildCard(
             context,
             "Button Widget",
             const ButtonWidget(),
           ),
 
-          // 3. Center Widget
           buildCard(
             context,
             "Center Widget",
             const CenterWidget(),
           ),
 
-          // 4. Column Widget
           buildCard(
             context,
             "Column Widget",
             const ColumnWidget(),
           ),
 
-          // 5. Column Cross Axis
           buildCard(
             context,
             "Column Cross Axis",
             const ColumnCrossAxis(),
           ),
 
-          // 6. Column Main Axis Size
           buildCard(
             context,
             "Column Main Axis Size",
             const ColumnMainAxisSize(),
           ),
 
-          // 7. Container Widget
           buildCard(
             context,
             "Container Widget",
             const ContainerWidget(),
           ),
 
-          // 8. Hello Flutter
           buildCard(
             context,
             "Hello Flutter",
             const HelloFlutter(),
           ),
 
-          // 9. Icon Widget
           buildCard(
             context,
             "Icon Widget",
             const IconWidget(),
           ),
 
-          // 10. Image Widget
           buildCard(
             context,
             "Image Widget",
             const ImageWidget(),
           ),
 
-          // 11. Padding Widget
           buildCard(
             context,
             "Padding Widget",
             const PaddingWidget(),
           ),
 
-          // 12. Scroll View
           buildCard(
             context,
             "Scroll View",
             const ScrollViewScreen(),
           ),
 
-          // 13. SizedBox Widget
           buildCard(
             context,
             "SizedBox Widget",
             const SizedBoxWidget(),
           ),
 
-          // 14. Text Widget
           buildCard(
             context,
             "Text Widget",
             const TextWidget(),
           ),
 
-          // Column Vertical Direction
           buildCard(
             context,
             "Column Vertical Direction",
             const ColumnVerticalDirectionWidget(),
           ),
 
-          // Row Widget
           buildCard(
             context,
             "Row Widget",
             const RowWidget(),
           ),
-          // Row Main Axis Alignment
+
           buildCard(
             context,
             "Row Main Axis Alignment",
             const RowMainAxisAlignmentWidget(),
           ),
-          // Row Cross Axis Alignment
+
           buildCard(
             context,
             "Row Cross Axis Alignment",
             const RowCrossAxisAlignmentWidget(),
           ),
-          // Row Main Axis Size
+
           buildCard(
             context,
             "Row Main Axis Size",
             const RowMainAxisSizeWidget(),
           ),
-          // Food Product Card
+
+
+          // ================= DAY 7 =================
+
           buildCard(
             context,
             "Food Product Card",
             const FoodProductCard(),
           ),
-          // Cupertino Basic
+
           buildCard(
             context,
             "Cupertino Basic",
             const CupertinoBasic(),
           ),
-          // Stateful Widgets
+
           buildCard(
-              context
-              , "Stateful Widget",
-              const StatefulBasic()
-          ),
-          // Login text Field
-          buildCard(
-              context,
-              "Login TextField",
-              const LoginTextField()
-          ),
-          // Login Input Decoration
-          buildCard(
-              context,
-              "Login Input Decoration",
-              const LoginInputDecoration()
-          ),
-          // Login Screen
-          buildCard(
-              context,
-              "Login Screen",
-              const LoginScreen()
-          ),
-          // Home Screen
-          buildCard(
-              context,
-              "Home Screen",
-              const HomeScreen()
-          ),
-          // Stack Example
-          buildCard(
-              context,
-              "Stack Example",
-              const StackExample()
+            context,
+            "Stateful Widget",
+            const StatefulBasic(),
           ),
 
-          // Flexible Example
+
+          // ================= LOGIN PROJECT =================
+
           buildCard(
-              context,
-              "Flexible Example",
-              const FlexibleExample()
+            context,
+            "Login TextField",
+            const LoginTextField(),
           ),
 
-          // Widget Practice
           buildCard(
-              context,
-              "Widget Practice",
-              const WidgetPractice()
+            context,
+            "Login Input Decoration",
+            const LoginInputDecoration(),
           ),
-          // Practice Questions
+
           buildCard(
-              context,
-              "Practice Questions",
-              const PracticeQuestions()
+            context,
+            "Login Screen",
+            const LoginScreen(),
+          ),
+
+          buildCard(
+            context,
+            "Home Screen",
+            const HomeScreen(),
+          ),
+
+
+          // ================= DAY 8 =================
+
+          buildCard(
+            context,
+            "Stack Example",
+            const StackExample(),
+          ),
+
+          buildCard(
+            context,
+            "Flexible Example",
+            const FlexibleExample(),
+          ),
+
+          buildCard(
+            context,
+            "Widget Practice",
+            const WidgetPractice(),
+          ),
+
+
+          // ================= DAY 9 =================
+
+          buildCard(
+            context,
+            "Practice Questions",
+            const PracticeQuestions(),
+          ),
+
+
+          // ================= FOOD DELIVERY APP =================
+
+          buildCard(
+            context,
+            "Food Delivery App",
+            const FrontScreen(),
           ),
         ],
       ),
     );
   }
+
+
+  // ===================================================
+  //                    BUILD CARD
+  // ===================================================
 
   Widget buildCard(
       BuildContext context,
@@ -267,24 +313,37 @@ class Apphome extends StatelessWidget {
       Widget screen,
       ) {
     return Card(
+
       margin: const EdgeInsets.all(10),
+
       color: Colors.cyanAccent,
+
       elevation: 10,
+
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
       ),
+
       shadowColor: Colors.black,
 
       child: ListTile(
-        title: Text(title),
+
+        title: Text(
+          title,
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
 
         trailing: const Icon(
           Icons.arrow_forward,
         ),
 
         onTap: () {
+
           Navigator.push(
             context,
+
             MaterialPageRoute(
               builder: (context) => screen,
             ),
@@ -294,4 +353,3 @@ class Apphome extends StatelessWidget {
     );
   }
 }
-
