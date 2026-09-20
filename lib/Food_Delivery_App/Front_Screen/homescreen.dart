@@ -46,7 +46,32 @@ class FrontScreen extends StatelessWidget {
             ],
           ),
         ),
+
       ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const [
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home),
+          label: 'Home',
+          backgroundColor: Colors.blue,
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.search),
+          label: 'Search',
+          backgroundColor: Colors.blue,
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.shopping_cart),
+          label: "Cart",
+          backgroundColor: Colors.blue,
+        ),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: "Profile",
+            backgroundColor: Colors.blue,
+        ),
+        ],
+      )
     );
   }
 }

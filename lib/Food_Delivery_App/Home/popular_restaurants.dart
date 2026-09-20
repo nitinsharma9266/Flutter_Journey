@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../Restaurants/restaurant_details.dart';
+
 class PopularRestaurants extends StatelessWidget {
   const PopularRestaurants({super.key});
 
@@ -68,100 +70,116 @@ class PopularRestaurants extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
               ),
 
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-
-                  ClipRRect(
-                    borderRadius: const BorderRadius.vertical(
-                      top: Radius.circular(10),
+              child: InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => RestaurantDetails(
+                        name: restaurants[index]["name"]!,
+                        image: restaurants[index]["image"]!,
+                        rating: restaurants[index]["rating"]!,
+                        time: restaurants[index]["time"]!,
+                        category: restaurants[index]["category"]!,
+                      ),
                     ),
+                  );
+                },
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
 
-                    child: Image.network(
-                      restaurants[index]["image"]!,
+                    ClipRRect(
+                      borderRadius: const BorderRadius.vertical(
+                        top: Radius.circular(10),
+                      ),
 
-                      height: 160,
-                      width: double.infinity,
+                      child: Image.network(
+                        restaurants[index]["image"]!,
 
-                      fit: BoxFit.cover,
+                        height: 160,
+                        width: double.infinity,
 
-                      errorBuilder:
-                          (context, error, stackTrace) {
-                        return const SizedBox(
-                          height: 160,
+                        fit: BoxFit.cover,
 
-                          child: Center(
-                            child: Icon(
-                              Icons.image_not_supported,
-                              size: 40,
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
+                        errorBuilder:
+                            (context, error, stackTrace) {
+                          return const SizedBox(
+                            height: 160,
 
-                  Padding(
-                    padding: const EdgeInsets.all(12),
-
-                    child: Column(
-                      crossAxisAlignment:
-                      CrossAxisAlignment.start,
-
-                      children: [
-
-                        Text(
-                          restaurants[index]["name"]!,
-                          style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-
-                        const SizedBox(height: 6),
-
-                        Row(
-                          children: [
-
-                            const Icon(
-                              Icons.star,
-                              color: Colors.orange,
-                              size: 20,
-                            ),
-
-                            const SizedBox(width: 5),
-
-                            Text(
-                              restaurants[index]["rating"]!,
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
+                            child: Center(
+                              child: Icon(
+                                Icons.image_not_supported,
+                                size: 40,
                               ),
                             ),
-
-                            const SizedBox(width: 8),
-
-                            Text(
-                              "• ${restaurants[index]["time"]!}",
-                              style: const TextStyle(
-                                color: Colors.grey,
-                              ),
-                            ),
-                          ],
-                        ),
-
-                        const SizedBox(height: 5),
-
-                        Text(
-                          restaurants[index]["category"]!,
-                          style: const TextStyle(
-                            fontSize: 13,
-                            color: Colors.grey,
-                          ),
-                        ),
-                      ],
+                          );
+                        },
+                      ),
                     ),
-                  ),
-                ],
+
+                    Padding(
+                      padding: const EdgeInsets.all(12),
+
+                      child: Column(
+                        crossAxisAlignment:
+                        CrossAxisAlignment.start,
+
+                        children: [
+
+                          Text(
+                            restaurants[index]["name"]!,
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+
+                          const SizedBox(height: 6),
+
+                          Row(
+                            children: [
+
+                              const Icon(
+                                Icons.star,
+                                color: Colors.orange,
+                                size: 20,
+                              ),
+
+                              const SizedBox(width: 5),
+
+                              Text(
+                                restaurants[index]["rating"]!,
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+
+                              const SizedBox(width: 8),
+
+                              Text(
+                                "• ${restaurants[index]["time"]!}",
+                                style: const TextStyle(
+                                  color: Colors.grey,
+                                ),
+                              ),
+                            ],
+                          ),
+
+                          const SizedBox(height: 5),
+
+                          Text(
+                            restaurants[index]["category"]!,
+                            style: const TextStyle(
+                              fontSize: 13,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             );
           },
