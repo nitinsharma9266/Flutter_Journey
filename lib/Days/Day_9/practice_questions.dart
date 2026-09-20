@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 class PracticeQuestions extends StatelessWidget {
   const PracticeQuestions({super.key});
+
+  get PaddingEdgeInsets => null;
 // =============Profile Screen=================
   // @override
   // Widget build(BuildContext context) {
@@ -369,42 +371,241 @@ class PracticeQuestions extends StatelessWidget {
                     ),
                     const SizedBox(height: 15),
 
-                    // Catagories
-                    Center(
-                      child: const Text(
-                        "Catagories",
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
+
+                    // CATEGORIES
+
+                    const SizedBox(height: 20),
+
+                    const Text(
+                      "Categories",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
 
-                    Row(
-                      children: [
-                        Flexible(
-                          child: Expanded(
-                            child: Column(
-                              children:[
-                                Icon(
-                                  Icons.local_pizza_sharp,
-                                  size: 20,
-                                  color: Colors.yellow[500],
+                    const SizedBox(height: 12),
+
+                    GridView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: 6,
+
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3,
+                        crossAxisSpacing: 12,
+                        mainAxisSpacing: 12,
+                        childAspectRatio: 1.2,
+                      ),
+
+                      itemBuilder: (context, index) {
+
+                        final categories = [
+                          ["Pizza", Icons.local_pizza],
+                          ["Burger", Icons.lunch_dining],
+                          ["Noodles", Icons.ramen_dining],
+                          ["Cake", Icons.cake],
+                          ["Salad", Icons.eco],
+                          ["Coffee", Icons.coffee],
+                        ];
+
+                        return Container(
+                          decoration: BoxDecoration(
+                            color: Colors.grey.shade100,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+
+                              Icon(
+                                categories[index][1] as IconData,
+                                size: 70,
+                                color: Colors.blue,
+                              ),
+
+                              const SizedBox(height: 6),
+
+                              Text(
+                                categories[index][0] as String,
+                                style: const TextStyle(
+                                  fontSize: 45,
+                                  fontWeight: FontWeight.w500,
                                 ),
-                                const Text(
-                                  "Pizza",
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                              ],
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    ),
+
+                    const SizedBox(height: 20),
+                    const Divider(
+                      thickness: 1,
+                    ),
+
+
+                    // Popular Restaurants
+
+                    const SizedBox(height: 20),
+
+                    const Text(
+                      "Popular Restaurants",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+
+                    const SizedBox(height: 12),
+
+                    ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: 3,
+
+                      itemBuilder: (BuildContext context, int index) {
+
+                        final restaurants = [
+                          {
+                            "name": "Pizza Palace",
+                            "image":
+                            "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80",
+                            "rating": "4.5",
+                            "time": "25-30 min",
+                            "category": "Pizza • Fast Food • Italian",
+                          },
+
+                          {
+                            "name": "Burger House",
+                            "image":
+                            "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=800&q=80",
+                            "rating": "4.3",
+                            "time": "20-25 min",
+                            "category": "Burger • Fast Food",
+                          },
+
+                          {
+                            "name": "Royal Biryani",
+                            "image":
+                            "https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=800&q=80",
+                            "rating": "4.7",
+                            "time": "30-35 min",
+                            "category": "Biryani • Indian • Mughlai",
+                          },
+                        ];
+
+                        return Card(
+                          elevation: 5,
+                          margin: const EdgeInsets.only(bottom: 12),
+
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            side: const BorderSide(
+                              color: Colors.grey,
+                              width: 1,
                             ),
                           ),
-                        ),
-                      ],
+
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+
+                              // Restaurant Image
+                              ClipRRect(
+                                borderRadius: const BorderRadius.vertical(
+                                  top: Radius.circular(10),
+                                ),
+
+                                child: Image.network(
+                                  restaurants[index]["image"]!,
+
+                                  height: 160,
+                                  width: double.infinity,
+                                  fit: BoxFit.cover,
+
+                                  errorBuilder: (context, error, stackTrace) {
+                                    return const SizedBox(
+                                      height: 160,
+                                      child: Center(
+                                        child: Icon(
+                                          Icons.image_not_supported,
+                                          size: 40,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ),
+
+                              // Restaurant Details
+                              Padding(
+                                padding: const EdgeInsets.all(12),
+
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+
+                                    Text(
+                                      restaurants[index]["name"]!,
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+
+                                    const SizedBox(height: 6),
+
+                                    Row(
+                                      children: [
+
+                                        const Icon(
+                                          Icons.star,
+                                          color: Colors.orange,
+                                          size: 20,
+                                        ),
+
+                                        const SizedBox(width: 5),
+
+                                        Text(
+                                          restaurants[index]["rating"]!,
+                                          style: const TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+
+                                        const SizedBox(width: 8),
+
+                                        Text(
+                                          "• ${restaurants[index]["time"]!}",
+                                          style: const TextStyle(
+                                            fontSize: 14,
+                                            color: Colors.grey,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+
+                                    const SizedBox(height: 5),
+
+                                    Text(
+                                      restaurants[index]["category"]!,
+                                      style: const TextStyle(
+                                        fontSize: 13,
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
                     ),
-                    const SizedBox(height: 15),
+
 
                   ],
                 )
